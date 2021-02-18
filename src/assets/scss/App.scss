@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
+
+$font: 'Reggae One', cursive;
+
+// Small tablets and large smartphones (landscape view)
+$screen-sm-max: 576px;
+
+// Small tablets (portrait view)
+$screen-md-max: 768px;
+
+// Tablets and small desktops
+$screen-lg-max: 992px;
+
+// Large tablets and desktops
+$screen-xl-max: 1200px;
+
+// Extra Large tablets and desktops
+$screen-xlg-max: 1440px;
+
+// Small tablets and large smartphones (landscape view)
+@mixin sm {
+    @media (max-width: #{$screen-sm-max}) {
+        @content;
+    }
+}
+
+// Small tablets (portrait view)
+@mixin md {
+    @media (max-width: #{$screen-md-max}) {
+        @content;
+    }
+}
+
+// Tablets and small desktops
+@mixin lg {
+    @media (max-width: #{$screen-lg-max}) {
+        @content;
+    }
+}
+
+// Large tablets and desktops
+@mixin xl {
+    @media (max-width: #{$screen-xl-max}) {
+        @content;
+    }
+}
+
+// Extra Large tablets and desktops
+@mixin xlg {
+    @media (max-width: #{$screen-xlg-max}) {
+        @content;
+    }
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+
+::selection {
+    background-color: #603813;
+    color: #fff;
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar
+{
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-image: -webkit-gradient(linear,
+        left bottom,
+        left top,
+        color-stop(0.72, #9c613f),
+        color-stop(0.86, #603813));
+}
+
+body {
+    background: #603813;
+    background: -webkit-linear-gradient(to right, #9c613f, #603813);
+    background: linear-gradient(to right, #9c613f, #603813);
+    font-family: $font;
+    overflow: hidden;
+}
+
+.app {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+
+    &__sidebar {
+        border-left: 1px solid #fff;
+        height: 100vh;
+        overflow-y: auto;
+        position: relative;
+
+        .input {
+            position: relative;
+            width: 100%;
+            height: 56px;
+            
+            input {
+                position: fixed;
+                width: 100%;
+                padding: 15px;
+                border-radius: 5px;
+                border: none;
+                font-size: 18px;
+                font-family: $font;
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+
+        .team {
+            display: flex;
+            align-items: center;
+            padding: 20px 50px;
+            color: #fff;
+            border-bottom: 3px solid #fff;
+            cursor: grab;
+            img {
+                width: 60px;
+                height: 60px;
+                object-fit: contain;
+                margin-right: 15px;
+            }
+        }
+    }
+
+    &__content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 50px;
+
+        h1.title {
+            color: #fff;
+            font-size: 40px;
+        }
+        
+        p.desc {
+            margin-bottom: 100px;
+            color: #fff;
+        }
+
+        &__wrapper {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-column-gap: 60px;
+            grid-row-gap: 20px;
+
+            h2.score {
+                font-size: 80px;
+                color: #fff;
+                font-family: monospace;
+            }
+
+            .team {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: center;
+                color: #fff;
+                cursor: grab;
+
+                img {
+                    width: 60px;
+                    height: 60px;
+                    object-fit: contain;
+                }
+            }
+
+            > div:not(:nth-child(2)) {
+                height: 300px;
+                width: 300px;
+                border: 1px dashed #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                span.add__team {
+                    font-size: 40px;
+                    color: #fff;
+                    font-family: monospace;
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                }
+            } 
+
+            > div:nth-child(2) {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .btn__success {
+                background: #00D395;
+                border-radius: 4px;
+                border: 2px solid #00D395;
+                padding: 15px;
+                color: #fff;
+                font-family: $font;
+                font-size: 18px;
+                transition: 0.5s;
+                cursor: pointer;
+                grid-area: 2 / span 3;
+                &:hover {
+                    background-color: transparent;
+                    color: #00D395;
+                }
+            }
+            .btn__danger {
+                background: #FF4339;
+                border-radius: 4px;
+                border: 2px solid #FF4339;
+                padding: 15px;
+                color: #fff;
+                font-family: $font;
+                font-size: 18px;
+                transition: 0.5s;
+                cursor: pointer;
+                grid-area: 3 / span 3;
+                &:hover {
+                    background-color: transparent;
+                    color: #FF4339;
+                }
+            }
+        }
+    }
+
+    @include xl {
+        grid-template-columns: auto;
+        gap: 50px;
+    }
+}
